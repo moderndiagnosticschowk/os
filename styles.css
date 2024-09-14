@@ -1,0 +1,202 @@
+/* General Styles */
+body {
+  font-family: "Baloo Bhaina 2", cursive;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f8ff;
+  color: #333;
+  text-align: center;
+}
+
+h1,
+h2 {
+  color: #000000;
+}
+
+p {
+  font-family: cursive;
+  font-size: 1.5rem;
+  color: #444;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #ff1493;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  margin-top: 20px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #ff69b4;
+  transform: scale(1.1);
+}
+
+/* Welcome Section */
+.welcome-section {
+  background: linear-gradient(135deg, #ff69b4 30%, #ffb6c1 90%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 3s;
+}
+
+/* Timeline Section */
+.timeline-section {
+  background: linear-gradient(135deg, #ffb6c1 30%, #f0f8ff 90%);
+  padding: 50px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  width: 200px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.3s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+.gallery-item p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Notes Section */
+.notes-section {
+  background: #ff69b4;
+  color: white;
+  padding: 50px;
+}
+
+.note-box {
+  font-size: 2rem;
+  background-color: #fff;
+  color: #ff69b4;
+  border-radius: 20px;
+  padding: 20px;
+  cursor: pointer;
+  margin: 20px auto;
+  width: 200px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.note-box:hover {
+  background-color: #ff1493;
+  transform: rotate(5deg) scale(1.1);
+}
+
+.hidden {
+  display: none;
+}
+#note2 img {
+  width: 300px;
+  border: 2px solid #ff69b4;
+  border-radius: 44px 0 44px 0;
+}
+/* Final Surprise Section */
+.final-section {
+  background-color: #ffb6c1;
+  padding: 50px;
+}
+
+.last-section {
+  background-color: #ff69b4;
+  color: white;
+  padding: 50px;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffe0e0;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+.video-container video {
+  border: 5px solid #ff69b4;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 3s ease-in-out;
+}
+
+/* Celebrate Confetti Button */
+#celebrate {
+  background-color: #fff;
+  color: #ff69b4;
+  padding: 20px;
+  border: 2px solid #ff69b4;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#celebrate:hover {
+  background-color: #ff1493;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item {
+    width: 100%;
+  }
+
+  .btn {
+    width: 90%;
+  }
+}

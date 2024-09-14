@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&family=Zeyada&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Surprise for You</title>
+  </head>
+
+  <body>
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <h1 class="fade-in">Hi, <span>Hina</span></h1>
+      <p class="fade-in">Are you ready for a little adventure?</p>
+      <button class="btn" onclick="goToSection(2)">Let's Begin</button>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section hidden">
+      <h2>Memories of Us</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="./data/hina.jpeg" alt="Memory 1" />
+          <p>30th Birthday 🥰</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./data/hinaa.jpeg" alt="Memory 2" />
+          <p>That crazy trip! ✈️</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./data/hinaaa.jpeg" alt="Memory 3" />
+          <p>More happy moments 💖</p>
+        </div>
+      </div>
+      <button class="btn" onclick="goToSection(3)">Next</button>
+    </section>
+
+    <!-- Hidden Notes Section -->
+    <section class="notes-section hidden">
+      <h2>Some Sweet Surprises</h2>
+      <div class="note-box" onclick="revealNote2()">💌 Click Me!</div>
+      <div id="note2" class="hidden">
+        <img
+          src="./data/manuel-cosentino-M3fhZSBFoFQ-unsplash.jpg"
+          alt="Thanks"
+        />
+        <p>You are my world! 🌎</p>
+      </div>
+      <button class="btn" onclick="goToSection(4)">Final Surprise</button>
+    </section>
+
+    <!-- Final Surprise Section -->
+    <section class="final-section hidden">
+      <h2>You're Amazing! 🎉</h2>
+      <p>Here's to many more moments together!</p>
+      <button class="btn" onclick="goToSection(5)">Final Surprise</button>
+    </section>
+
+    <!-- Last Section with Confetti -->
+    <section class="last-section hidden">
+      <h2>You're Amazing! 🎉</h2>
+      <div id="birthday-video" class="video-container">
+        <video id="surpriseVideo" width="400">
+          <source
+            src="./data/Happy Birthday Song For Special Day 💎 Happy Birthday To You 💎 (1).mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+        <p class="note-text">
+          Happy Birthday! May all your dreams come true and every moment be
+          filled with joy! 🎂🎉
+        </p>
+      </div>
+      <button class="btn" id="celebrate-btn" onclick="celebrate()">
+        Celebrate with Confetti
+      </button>
+      <p>Here's to many more moments together!</p>
+    </section>
+
+    <script src="scripts.js"></script>
+    <!-- External library for confetti animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  </body>
+</html>
