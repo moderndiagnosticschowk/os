@@ -2,69 +2,610 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Surprise for You ✨</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&family=Zeyada&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;600;800&family=Zeyada&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Surprise for You</title>
-  </head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        position: relative;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      section.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Animated Background */
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating Hearts */
+      .heart {
+        position: fixed;
+        bottom: -50px;
+        font-size: 2rem;
+        animation: floatUp 8s ease-in infinite;
+        z-index: 1;
+        opacity: 0.7;
+      }
+
+      @keyframes floatUp {
+        0% {
+          bottom: -50px;
+          opacity: 0.7;
+          transform: translateX(0) rotate(0deg);
+        }
+        50% {
+          opacity: 0.9;
+        }
+        100% {
+          bottom: 110vh;
+          opacity: 0;
+          transform: translateX(100px) rotate(360deg);
+        }
+      }
+
+      /* Welcome Section */
+      .welcome-section h1 {
+        font-family: "Baloo Bhaina 2", cursive;
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        animation: bounceIn 1s ease;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .welcome-section h1 span {
+        color: #ffd700;
+        font-size: 5rem;
+        display: inline-block;
+        animation: wiggle 1s ease infinite;
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .welcome-section p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.5s forwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Button Styles */
+      .btn {
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        color: white;
+        border: none;
+        padding: 1rem 3rem;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      .btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+      }
+
+      .btn:active {
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      /* Timeline Section */
+       .timeline-section h2 {
+            font-family: 'Baloo Bhaina 2', cursive;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+/*
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        } */
+
+      /* Timeline Section */
+      .timeline-section {
+        background: linear-gradient(135deg, #ffb6c1 30%, #f0f8ff 90%);
+        padding: 50px;
+      }
+
+      .gallery {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .gallery-item {
+        width: 200px;
+        margin: 10px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        transition: transform 0.3s;
+      }
+
+      .gallery-item img:hover {
+        transform: scale(1.1);
+      }
+
+      .gallery-item p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        border-radius: 0 0 20px 20px;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-15px) rotate(2deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-item p {
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* Notes Section */
+      .notes-section h2 {
+        font-family: "Baloo Bhaina 2", cursive;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .note-box {
+        background: linear-gradient(135deg, #c403da 0%, #f5576c 100%);
+        padding: 3rem 4rem;
+        border-radius: 30px;
+        font-size: 3rem;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 15px 35px rgba(12, 4, 5, 0.4);
+        margin-bottom: 2rem;
+        animation: pulse 2s ease infinite;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .note-box:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 20px 50px rgba(245, 87, 108, 0.6);
+      }
+
+      #note2 {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 20px;
+        margin: 2rem 0;
+        text-align: center;
+        animation: scaleIn 0.5s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      #note2 img {
+        max-width: 400px;
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      #note2 p {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #ffd700;
+      }
+
+      /* Final Section */
+      .final-section h2,
+      .last-section h2 {
+        font-family: "Baloo Bhaina 2", cursive;
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        animation: rainbow 3s linear infinite;
+      }
+
+      @keyframes rainbow {
+        0% {
+          color: #ff6b6b;
+        }
+        33% {
+          color: #ffd700;
+        }
+        66% {
+          color: #4ecdc4;
+        }
+        100% {
+          color: #ff6b6b;
+        }
+      }
+
+      .final-section p,
+      .last-section > p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Video Section */
+      .video-container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 20px;
+        margin: 2rem 0;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      #surpriseVideo {
+        max-width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        margin-bottom: 1rem;
+      }
+
+      .note-text {
+        font-size: 1.3rem;
+        margin-top: 1rem;
+        line-height: 1.6;
+        color: #fff;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        section {
+          padding: 1.5rem 1rem;
+          min-height: 100svh;
+        }
+
+        .welcome-section h1 {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+
+        .welcome-section h1 span {
+          font-size: 3rem;
+          display: block;
+          margin-top: 0.5rem;
+        }
+
+        .welcome-section p {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+
+        .timeline-section h2,
+        .notes-section h2,
+        .final-section h2,
+        .last-section h2 {
+          font-size: 2rem;
+          text-align: center;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 0 1rem;
+        }
+
+        .gallery-item {
+          padding: 1rem;
+        }
+
+        .gallery-item img {
+          height: 200px;
+        }
+
+        .gallery-item p {
+          font-size: 1rem;
+        }
+
+        .btn {
+          padding: 0.8rem 2rem;
+          font-size: 1rem;
+          width: auto;
+          max-width: 90%;
+        }
+
+        .note-box {
+          padding: 2rem 3rem;
+          font-size: 2.5rem;
+          width: 90%;
+        }
+
+        #note2 {
+          padding: 1.5rem;
+          width: 95%;
+          margin: 1rem auto;
+        }
+
+        #note2 img {
+          max-width: 100%;
+        }
+
+        #note2 p {
+          font-size: 1.5rem;
+        }
+
+        .video-container {
+          padding: 1rem;
+          width: 95%;
+          margin: 1rem auto;
+        }
+
+        #surpriseVideo {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .note-text {
+          font-size: 1rem;
+          padding: 0 0.5rem;
+        }
+
+        .final-section p,
+        .last-section > p {
+          font-size: 1.2rem;
+          text-align: center;
+          padding: 0 1rem;
+        }
+
+        .heart {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .welcome-section h1 {
+          font-size: 2rem;
+        }
+
+        .welcome-section h1 span {
+          font-size: 2.5rem;
+        }
+
+        .timeline-section h2,
+        .notes-section h2,
+        .final-section h2,
+        .last-section h2 {
+          font-size: 1.8rem;
+        }
+
+        .note-box {
+          padding: 1.5rem 2rem;
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
   <body>
+    <div class="bg-animation"></div>
+
     <!-- Welcome Section -->
-    <section class="welcome-section">
-      <h1 class="fade-in">Hi, <span>Hina</span></h1>
-      <p class="fade-in">Are you ready for a little adventure?</p>
-      <button class="btn" onclick="goToSection(2)">Let's Begin</button>
+    <section class="welcome-section active">
+      <h1>Hi, <span>Hina</span></h1>
+      <p>Are you ready for a little adventure?</p>
+      <button class="btn" onclick="goToSection(2)">Let's Begin ✨</button>
     </section>
 
     <!-- Timeline Section -->
     <section class="timeline-section hidden">
-      <h2>Memories of Us</h2>
+      <h2>Memories of Us 💫</h2>
       <div class="gallery">
         <div class="gallery-item">
-          <img src="./data/hina.jpeg" alt="Memory 1" />
-          <p>30th Birthday 🥰</p>
+          <img
+            src="./data/hina.jpeg"
+            alt="Memory 1"
+            onerror="this.src='https://via.placeholder.com/250x250/ff6b6b/ffffff?text=30th+Birthday'"
+          />
+          <p></p>
         </div>
         <div class="gallery-item">
-          <img src="./data/hinaa.jpeg" alt="Memory 2" />
-          <p>That crazy trip! ✈️</p>
+          <img
+            src="./data/hinaa.jpeg"
+            alt="Memory 2"
+            onerror="this.src='https://via.placeholder.com/250x250/4ecdc4/ffffff?text=Crazy+Trip'"
+          />
+          <p>✈️</p>
         </div>
         <div class="gallery-item">
-          <img src="./data/hinaaa.jpeg" alt="Memory 3" />
+          <img
+            src="./data/hinaaa.jpeg"
+            alt="Memory 3"
+            onerror="this.src='https://via.placeholder.com/250x250/ffd700/ffffff?text=Happy+Moments'"
+          />
           <p>More happy moments 💖</p>
         </div>
       </div>
-      <button class="btn" onclick="goToSection(3)">Next</button>
+      <button class="btn" onclick="goToSection(3)">Next Adventure →</button>
     </section>
 
     <!-- Hidden Notes Section -->
     <section class="notes-section hidden">
-      <h2>Some Sweet Surprises</h2>
+      <h2>Some Sweet Surprises 💝</h2>
       <div class="note-box" onclick="revealNote2()">💌 Click Me!</div>
       <div id="note2" class="hidden">
         <img
           src="./data/manuel-cosentino-M3fhZSBFoFQ-unsplash.jpg"
           alt="Thanks"
+          onerror="this.src='https://via.placeholder.com/400x300/f093fb/ffffff?text=You+Are+Amazing'"
         />
-        <p>You are my world! 🌎</p>
+        <p>for being supportive</p>
       </div>
-      <button class="btn" onclick="goToSection(4)">Final Surprise</button>
+      <button class="btn" onclick="goToSection(4)">One More Thing... 🎁</button>
     </section>
 
     <!-- Final Surprise Section -->
     <section class="final-section hidden">
       <h2>You're Amazing! 🎉</h2>
       <p>Here's to many more moments together!</p>
-      <button class="btn" onclick="goToSection(5)">Final Surprise</button>
+      <button class="btn" onclick="goToSection(5)">The Grand Finale 🎊</button>
     </section>
 
     <!-- Last Section with Confetti -->
     <section class="last-section hidden">
-      <h2>You're Amazing! 🎉</h2>
+      <h2>Happy Birthday, Hina! 🎉</h2>
       <div id="birthday-video" class="video-container">
-        <video id="surpriseVideo" width="400">
+        <video id="surpriseVideo" width="400" controls>
           <source
             src="./data/Happy Birthday Song For Special Day 💎 Happy Birthday To You 💎 (1).mp4"
             type="video/mp4"
@@ -77,13 +618,112 @@
         </p>
       </div>
       <button class="btn" id="celebrate-btn" onclick="celebrate()">
-        Celebrate with Confetti
+        Celebrate with Confetti 🎊
       </button>
-      <p>Here's to many more moments together!</p>
+      <p>Here's to many more moments together! 💕</p>
     </section>
 
-    <script src="scripts.js"></script>
-    <!-- External library for confetti animation -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+      let currentSection = 1;
+
+      // Create floating hearts
+      function createHearts() {
+        const hearts = ["❤️", "💖", "💕", "💗", "💓", "💝"];
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.left = Math.random() * 100 + "%";
+          heart.style.animationDuration = Math.random() * 3 + 5 + "s";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 8000);
+        }, 1000);
+      }
+
+      createHearts();
+
+      function goToSection(sectionNumber) {
+        const sections = document.querySelectorAll("section");
+        sections[currentSection - 1].classList.remove("active");
+        sections[currentSection - 1].classList.add("hidden");
+
+        currentSection = sectionNumber;
+        sections[currentSection - 1].classList.remove("hidden");
+
+        setTimeout(() => {
+          sections[currentSection - 1].classList.add("active");
+        }, 50);
+
+        // Auto-play video when reaching last section
+        if (sectionNumber === 5) {
+          setTimeout(() => {
+            const video = document.getElementById("surpriseVideo");
+            video.play().catch((e) => console.log("Autoplay prevented"));
+          }, 500);
+        }
+      }
+
+      function revealNote2() {
+        const note = document.getElementById("note2");
+        note.classList.remove("hidden");
+
+        // Mini confetti burst
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.6 },
+        });
+      }
+
+      function celebrate() {
+        const duration = 5000;
+        const animationEnd = Date.now() + duration;
+        const defaults = {
+          startVelocity: 30,
+          spread: 360,
+          ticks: 60,
+          zIndex: 0,
+        };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function () {
+          const timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          const particleCount = 50 * (timeLeft / duration);
+
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            })
+          );
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            })
+          );
+        }, 250);
+
+        // Trigger additional emoji confetti
+        setTimeout(() => {
+          confetti({
+            particleCount: 100,
+            spread: 160,
+            origin: { y: 0.6 },
+            shapes: ["circle", "square"],
+            colors: ["#ff6b6b", "#ffd700", "#4ecdc4", "#f093fb"],
+          });
+        }, 500);
+      }
+    </script>
   </body>
 </html>
